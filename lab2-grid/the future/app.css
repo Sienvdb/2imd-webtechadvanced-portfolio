@@ -1,3 +1,49 @@
-h1{
-    color: pink;
+*{
+    box-sizing: border-box; 
+ }
+
+main p{
+    font-family: sans-serif;
+    font-weight: bolder;
+    font-size: 1.5em;
+    height: 125px;
+
+
+    /*
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    */
+
+    padding: 35px;
+    margin: 10px;
+}
+
+main p.homework{
+    background-color: red;
+    align-self: center;
+}
+
+main p.broken{
+    background-color: aqua;
+    align-self: center;
+}
+
+main p.infinity{
+    background-color: yellow;
+}
+
+@media (min-width: 700px){
+    main{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0em;
+    }
+}
+
+@media (min-width: 800px){
+    main{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    }
 }
