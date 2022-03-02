@@ -7,15 +7,19 @@ main p{
     font-weight: bolder;
     font-size: 1.5em;
     height: 125px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;;
 
 
-    /*
+    /* als tekst niet past dan ... tonen
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     */
 
-    padding: 35px;
+    padding: 75px 35px;
     margin: 10px;
 }
 
@@ -33,7 +37,7 @@ main p.infinity{
     background-color: yellow;
 }
 
-@media (min-width: 700px){
+@media (min-width: 800px){
     main{
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -41,9 +45,23 @@ main p.infinity{
     }
 }
 
-@media (min-width: 800px){
+@media (min-width: 1000px){
     main{
+        max-width: 10%;
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;   
+    }
+    main p{
+        padding: 105px 45px;
+    }
+    main p.broken{
+        height: 97%;
+        grid-row: 1/4;
+        grid-column: 3;
+    }
+    main p.infinity{
+        height: 96%;
+        grid-row:2/4;
+        grid-column: 4/6;
     }
 }
