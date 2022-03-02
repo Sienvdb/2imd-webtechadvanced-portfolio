@@ -1,0 +1,72 @@
+*{
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+div{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+p{
+    margin: 0px;
+}
+
+.backgroundImage{
+    background-image: url('festival.png');
+    max-width: 300px;
+}
+
+.header{
+    width: 100%;
+    background-color: black;
+    color: white;
+    letter-spacing: 0.1em;
+}
+
+.header h1{
+    margin-bottom: 0px;
+}
+
+.header p{
+    font-weight:100;
+    margin-bottom: 20px;
+}
+
+div .price, div .date, div .extraFrustrated, div .admit{
+    padding: 15px;
+    border-style: solid;
+    border-color: black;
+    border-width: 0.05em;
+}
+
+.qr{
+    padding: 60px;
+}
+
+.price{
+    display: flex;
+    flex-direction: row;
+}
+
+.price p{
+    padding: 10px;
+}
+
+div.price{
+    padding: 0px;
+    margin: 0px;
+}
+
+.extraFrustrated{
+    display: none;
+}
+
+@media (min-width: 700px) {
+    *{
+        background-color: yellow;
+    }
+}
