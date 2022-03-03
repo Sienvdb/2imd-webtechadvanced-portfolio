@@ -28,13 +28,20 @@ export default class Todo {
       todoItem = valueInput;
     }
     li.innerHTML = todoItem;
+    li.addEventListener("click", this.markDone.bind(li));
     return li;
   }
 
-  markDone(e) {
+  markDone(li) {
     // HINT🤩
     // this function should mark the current todo as done, by adding the correct CSS class
     // if the item is clicked, but was already marked as done, remove the item from the list
+    console.log(this)
+    this.classList.add("done");
+    this.addEventListener("click", function(e){
+      console.log("yoepieeee");
+      this.remove();
+    } )
   }
 
   add() {
