@@ -15,7 +15,7 @@ export default class App {
       // HINT🤩
       document.querySelector("#add-item-text").addEventListener("keyup", this.createItem.bind(this));
         //door .bind(this) geeft die de huidige waarde hier van this door aan de createElement functie
-
+    
       // pressing the enter key in the text field triggers the createItem function
       // addEventListener("keyup", this.createItem.bind(this));
       // read up on .bind() -> we need to pass the current meaning of this to the eventListener
@@ -25,11 +25,13 @@ export default class App {
     createItem(e) {
         if(e.key === "Enter"){
             console.log("📕");
-            let todo = new Todo("this is demo");
+            let todo = new Todo();
             todo.add();
+            todo.saveToStorage();
+            //todo.reset();
         };
         //this.reset(); //gaat hier niet want verwijst naar de eventlistener (als bind in setupEventListener dan krijgt die waarde mee van this en werkt het wel)
-        console.log(this); // --> van betekenis verandert tegenover setupEventListeners
+        //console.log(this); // --> van betekenis verandert tegenover setupEventListeners
 
       // HINT🤩
       // this function should create a new todo by using the Todo() class
@@ -48,6 +50,7 @@ export default class App {
     }
   
     reset() {
+        document.querySelector("#add-item-text").value.innerHTML="";
       // this function should reset the form / clear the text field
     }
   }

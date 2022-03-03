@@ -2,7 +2,7 @@ export default class Todo {
   constructor(title) {
     // HINT🤩
     // use a constructor to set basic property values
-    this.title = title;
+    //this.title = title;
   }
 
   createElement() {
@@ -13,7 +13,8 @@ export default class Todo {
     // don't forget to hook up an event listener for the click event
     // return newNote;
     let li =document.createElement("li");
-    li.innerHTML = this.title;
+    let valueInput = document.querySelector("#add-item-text").value;
+    li.innerHTML = valueInput;
     li.classList.add("prior-high");
     return li;
   }
@@ -28,6 +29,7 @@ export default class Todo {
     // HINT🤩
     // this function should append the note to the screen somehow
     let todo = this.createElement(); // should return a full <li> with the right classes and innerHTML
+    console.log(this.value)
     document.querySelector("#todo-list").appendChild(todo);
     }
 
