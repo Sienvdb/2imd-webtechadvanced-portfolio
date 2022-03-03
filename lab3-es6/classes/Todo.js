@@ -15,7 +15,14 @@ export default class Todo {
     let li =document.createElement("li");
     let valueInput = document.querySelector("#add-item-text").value;
     li.innerHTML = valueInput;
-    li.classList.add("prior-high");
+    if(valueInput.includes("high:")){
+      li.classList.add("prior-high");
+    }else if(valueInput.includes("medium:")){
+      li.classList.add("prior-medium");
+    }else{
+      li.classList.add("prior-low");
+    }
+    
     return li;
   }
 
@@ -29,7 +36,6 @@ export default class Todo {
     // HINT🤩
     // this function should append the note to the screen somehow
     let todo = this.createElement(); // should return a full <li> with the right classes and innerHTML
-    console.log(this.value)
     document.querySelector("#todo-list").appendChild(todo);
     }
 
