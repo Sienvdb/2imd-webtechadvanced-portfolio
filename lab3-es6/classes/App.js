@@ -28,7 +28,7 @@ export default class App {
             let todo = new Todo();
             todo.add();
             todo.saveToStorage();
-            //todo.reset();
+            this.reset();
         };
         //this.reset(); //gaat hier niet want verwijst naar de eventlistener (als bind in setupEventListener dan krijgt die waarde mee van this en werkt het wel)
         //console.log(this); // --> van betekenis verandert tegenover setupEventListeners
@@ -50,7 +50,7 @@ export default class App {
     }
   
     reset() {
-        document.querySelector("#add-item-text").value.innerHTML="";
+        document.querySelector("#add-item-text").value="";
       // this function should reset the form / clear the text field
     }
   }
