@@ -14,15 +14,20 @@ export default class Todo {
     // return newNote;
     let li =document.createElement("li");
     let valueInput = document.querySelector("#add-item-text").value;
-    li.innerHTML = valueInput;
+    let todoItem;
     if(valueInput.includes("high:")){
       li.classList.add("prior-high");
-    }else if(valueInput.includes("medium:")){
-      li.classList.add("prior-medium");
-    }else{
+    }else if(valueInput.includes("low:")){
       li.classList.add("prior-low");
+    }else{
+      li.classList.add("prior-medium");
     }
-    
+    if(valueInput.includes("high:")|| valueInput.includes("medium:")||valueInput.includes("low:")){
+      todoItem = valueInput.replace(/(.*):/,"");
+    }else{
+      todoItem = valueInput;
+    }
+    li.innerHTML = todoItem;
     return li;
   }
 
