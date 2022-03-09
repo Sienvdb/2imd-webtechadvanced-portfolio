@@ -36,11 +36,24 @@ p{
     margin-bottom: 20px;
 }
 
-div .price, div .date, div .extraFrustrated, div .admit{
-    padding: 15px;
+.price, .date, .admit, .extraFrustrated{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 100px 1 0;
+    padding: 5px 15px;
     border-style: solid;
     border-color: black;
     border-width: 0.05em;
+    }
+    
+.info{
+    height:60px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
 }
 
 .qr{
@@ -66,7 +79,88 @@ div.price{
 }
 
 @media (min-width: 700px) {
-    *{
-        background-color: yellow;
+    .backgroundImage{
+        max-width: 800px;
+        max-height: 300px;
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+        grid-template-rows: repeat(1, 100px);
+        background-size: cover;
+        padding: 10px;
+    }
+
+    .header h1{
+        order:2;
+    }
+
+    .header p{
+        order:1;
+        margin-bottom: 0px;
+    }
+
+    .qr{
+        margin-top: 110px;
+        height: 210px;
+        color: black;
+        border-style: solid;
+        border-color: black;
+        border-width: 0.05em;
+        padding: 0px;
+        grid-column: 2;
+        grid-row: 1/2;
+    }
+    .qr img{
+        max-width: 100px;
+        grid-row:1/4;
+        grid-column: 2;
+
+    }
+    .header{
+        background-color: transparent;
+        color: black;
+        border-style: solid;
+        border-color: black;
+        border-width: 0.05em;
+    }
+
+    .price, .date, .admit, .extraFrustrated{
+        gap: 0;
+        padding: 15px 0px;
+        margin: 0px;
+        }
+
+    .info{
+        order: 1;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin-top: auto;
+        grid-column: 1;
+        grid-row: 2;
+        gap: 0;
+
+    }
+
+    .extraFrustrated{
+        width: 100%;
+        order: 2;
+        display: grid;
+        grid-column: 1;
+        grid-row: 3;
+    }
+
+      
+
+}
+
+/*
+@media (prefers-color-scheme: dark) {
+    .backgroundImage {
+        color: white;
+        box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.5);
+    }
+
+    div .price, div .date, div .extraFrustrated, div .admit {
+        border-color: white;
     }
 }
+
