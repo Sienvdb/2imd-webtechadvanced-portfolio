@@ -45,20 +45,18 @@ export default class App {
     }
   
     loadFromStorage() {
-      // HINT🤩
       // load all items from storage here and add them to the screen
-      // use the Todo class to create the elements
       let storeTodo = JSON.parse(localStorage.getItem('todo'));
-      console.log(storeTodo);
 
       //if storage is not empty
       if(storeTodo !== null) {
         //print all the items
         storeTodo.forEach((title) => {
-          //let todo = new Todo(`${title['priority']}:${title['title']}`);
-          let todo = new Todo(`${title['title']}`);
-          if(title['done'] === "done"){
-            todo.add("done");
+          let todo = new Todo(`${title['priority']}:${title['title']}`);
+          if(title['todo'] === "clicked"){
+            todo.add("clicked");
+          } else if(title["todo"] === "removed"){
+            todo.localStorage.removeItem('todo');
           }
           else {
             todo.add();
@@ -70,8 +68,8 @@ export default class App {
     
   
     reset() {
-        document.querySelector("#add-item-text").value="";
       // this function should reset the form / clear the text field
+      document.querySelector("#add-item-text").value="";
     }
   }
   
