@@ -1,17 +1,16 @@
 import Todo from "./Todo.js"
 
 export default class App {
+  
     constructor() {
-      console.log("🍕");
       // HINT🤩
       // set up the enter Key
       this.setupEventListeners();
       // when the app loads, we can show previously saved items from localstorage
-      // this.loadFromStorage();
+      this.loadFromStorage();
     }
   
     setupEventListeners() {
-      console.log("👂🏽");
       // HINT🤩
       document.querySelector("#add-item-text").addEventListener("keyup", this.createItem.bind(this));
         //door .bind(this) geeft die de huidige waarde hier van this door aan de createElement functie
@@ -24,12 +23,14 @@ export default class App {
   
     createItem(e) {
         if(e.key === "Enter"){
-            console.log("📕");
-            let todo = new Todo();
+            let todoValue = document.querySelector("#add-item-text").value;
+            let todo = new Todo(todoValue);
             todo.add();
             todo.saveToStorage();
             this.reset();
         };
+
+        
         //this.reset(); //gaat hier niet want verwijst naar de eventlistener (als bind in setupEventListener dan krijgt die waarde mee van this en werkt het wel)
         //console.log(this); // --> van betekenis verandert tegenover setupEventListeners
 
@@ -47,7 +48,26 @@ export default class App {
       // HINT🤩
       // load all items from storage here and add them to the screen
       // use the Todo class to create the elements
+      let storeTodo = JSON.parse(localStorage.getItem('todo'));
+      console.log(storeTodo);
+
+      //if storage is not empty
+      if(storeTodo !== null) {
+        //print all the items
+        storeTodo.forEach((title) => {
+          //let todo = new Todo(`${title['priority']}:${title['title']}`);
+          let todo = new Todo(`${title['title']}`);
+          if(title['done'] === "done"){
+            todo.add("done");
+          }
+          else {
+            todo.add();
+          }              
+      });
     }
+}
+
+    
   
     reset() {
         document.querySelector("#add-item-text").value="";
