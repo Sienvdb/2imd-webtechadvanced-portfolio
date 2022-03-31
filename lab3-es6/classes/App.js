@@ -54,11 +54,10 @@ export default class App {
         storeTodo.forEach((title) => {
           let todo = new Todo(`${title['priority']}:${title['title']}`);
           if(title['todo'] === "clicked"){
+            console.log("click todo");
+            console.log(todo)
             todo.add("clicked");
-          } else if(title["todo"] === "removed"){
-            todo.localStorage.removeItem('todo');
-          }
-          else {
+          }else {
             todo.add();
           }              
       });
