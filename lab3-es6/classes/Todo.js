@@ -20,9 +20,9 @@ export default class Todo {
     
     //localstorage
     //let storeItems = []; //lege array aanmaken waar alles todo's in worden geplaatst
-    
-    let li =document.createElement("li");
     console.log(this.title);
+
+    let li =document.createElement("li");
     this.status = "created";
     if(this.title.startsWith("high:")){
       li.classList.add("prior-high");
@@ -52,12 +52,28 @@ export default class Todo {
     // HINT🤩
     // this function should mark the current todo as done, by adding the correct CSS class
     // if the item is clicked, but was already marked as done, remove the item from the list
-    console.log("yoepie");
-    this.status = "clicked";
-    this.classList.add("done");
-    this.addEventListener("click", function(e){
-      this.remove();
-    })
+    let storeTodo = JSON.parse(localStorage.getItem('todo'));
+    let lookingFor = this.innerHTML;
+
+    storeTodo.forEach((todo, index) => {
+      if(lookingFor == todo.title){
+        if(this.classList.contains("done")){
+          console.log("click 2");
+          storeTodo[index].todo = "removed";
+          storeTodo.splice(index, 1)
+          localStorage.setItem("todo", JSON.stringify(storeTodo));
+          this.remove()
+        }else{
+          console.log("click 1");
+          this.status = "clicked";
+          storeTodo[index].todo = "clicked";
+          localStorage.setItem("todo", JSON.stringify(storeTodo));
+          this.classList.add("done");
+        }
+      }
+    });
+    
+    console.log(storeTodo);
   }
 
   add(clicked) {
@@ -88,7 +104,6 @@ export default class Todo {
     let storeTodo = localStorage.getItem("todo");
     storeTodo = JSON.parse(storeTodo) || [];
     
-  
     storeTodo.push({"priority": this.priority, "title": this.todoItem, "todo": this.status});
     
     localStorage.setItem("todo", JSON.stringify(storeTodo));
