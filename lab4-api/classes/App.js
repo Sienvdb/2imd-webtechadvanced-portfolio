@@ -80,27 +80,7 @@ export default class App{
     printMeal(json){
         let meal = 0;
         let mealPic; 
-        if (this.timeNow <= 10){
-            meal = json.categories[12].strCategory;
-            mealPic = json.categories[12].strCategoryThumb;
-        } else if(10 < this.timeNow < 16){
-            meal = json.categories[5].strCategory;
-            mealPic = json.categories[5].strCategoryThumb;
-        } else if(16 <= this.timeNow < 18){
-            meal = json.categories[9].strCategory;
-            mealPic = json.categories[9].strCategoryThumb;
-        } else if(18 <= this.timeNow < 20){
-            if (this.temp > 19){
-                meal = json.categories[7].strCategory;
-                mealPic = json.categories[7].strCategoryThumb;
-            }else{
-                meal = json.categories[0].strCategory;
-                mealPic = json.categories[0].strCategoryThumb;
-            }
-        } else{
-            meal = json.categories[2].strCategory;
-            mealPic = json.categories[2].strCategoryThumb;
-        }
+        
         console.log(meal);
     }
 }
