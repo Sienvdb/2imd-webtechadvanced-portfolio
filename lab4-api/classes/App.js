@@ -6,7 +6,8 @@ export default class App{
         this.long=0;
         this.temp=0;
         this.time=0;
-        this.timeNow=0;
+        this.hour=0;
+        this.minute=0;
         this.getLocation();
         this.getTime();
     }
@@ -21,8 +22,9 @@ export default class App{
 
     getTime(){
         let time = new Date();
-        this.timeNow=time.getHours();
-        console.log(this.timeNow);
+        this.hour=time.getHours();
+        this.minute=time.getMinutes();
+
     }
 
     locationSuccess(location){//want krijgt parameter binnen (de locatie die gevonden wordt in getLocation)
@@ -47,20 +49,12 @@ export default class App{
         }).catch( err => { //als then niet werkt
             console.log(err);
         }).finally(() => { //laatste stap zoizo, kan bv ook refreshen zijn in browser, versturen, actie, ...
+            this.getMeal();
             console.log("finally done");
         }); 
     }
 
-    printWeather(json){
-        let summary = json.weather[0].description;
-        console.log(this.temp);
-        document.querySelector("h1").innerHTML = summary;
-        document.querySelector("h2").innerHTML = this.temp + " °C";
 
-        this.getMeal();
-
-
-    }
 
     getMeal(){
         let url = `https://www.themealdb.com/api/json/v${this.API_KEY_MEAL}/${this.API_KEY_MEAL}/categories.php`;
@@ -80,16 +74,16 @@ export default class App{
     printMeal(json){
         let meal = 0;
         let mealPic; 
-        if (this.timeNow <= 10){
+        if (this.hour <= 10){
             meal = json.categories[12].strCategory;
             mealPic = json.categories[12].strCategoryThumb;
-        } else if(10 < this.timeNow < 16){
+        } else if(10 < this.hour < 16){
             meal = json.categories[5].strCategory;
             mealPic = json.categories[5].strCategoryThumb;
-        } else if(16 <= this.timeNow < 18){
+        } else if(16 <= this.hour < 18){
             meal = json.categories[9].strCategory;
             mealPic = json.categories[9].strCategoryThumb;
-        } else if(18 <= this.timeNow < 20){
+        } else if(18 <= this.hour < 20){
             if (this.temp > 19){
                 meal = json.categories[7].strCategory;
                 mealPic = json.categories[7].strCategoryThumb;
@@ -101,6 +95,10 @@ export default class App{
             meal = json.categories[2].strCategory;
             mealPic = json.categories[2].strCategoryThumb;
         }
-        console.log(meal);
+        console.log(mealPic);
+        document.querySelector("h2").innerHTML = "It is " + this.hour + ":" + this.minute + " and " + this.temp + "°C outside.";
+        document.querySelector("h1").innerHTML = "Perfect time to eat " + meal + ".";
+        document.querySelector("#app").style.backgroundImage = "url("+ mealPic +")";
+
     }
 }
