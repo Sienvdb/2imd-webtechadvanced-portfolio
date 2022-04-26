@@ -97,8 +97,7 @@ export default class App{
         }
         console.log(mealPic);
         document.querySelector("h2").innerHTML = "It is " + this.hour + ":" + this.minute + " and " + this.temp + "°C outside.";
-        document.querySelector("h1").innerHTML = "Perfect time to eat " + meal + ".";
-        document.querySelector("#app").style.backgroundImage = "url("+ mealPic +")";
-
+        document.querySelector("h1").innerHTML = "Perfect time to eat " + meal + "!";
+        document.querySelector(".mealBackground").src=mealPic;
     }
 }
