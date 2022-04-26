@@ -5,7 +5,11 @@ export default class App{
         this.lat=0;
         this.long=0;
         this.temp=0;
+        this.time=0;
+        this.hour=0;
+        this.minute=0;
         this.getLocation();
+        this.getTime();
     }
 
     getLocation(){
@@ -14,6 +18,13 @@ export default class App{
             this.locationSuccess.bind(this),
             this.locationError.bind(this)
             )
+    }
+
+    getTime(){
+        let time = new Date();
+        this.hour=time.getHours();
+        this.minute=time.getMinutes();
+
     }
 
     locationSuccess(location){//want krijgt parameter binnen (de locatie die gevonden wordt in getLocation)
@@ -38,20 +49,12 @@ export default class App{
         }).catch( err => { //als then niet werkt
             console.log(err);
         }).finally(() => { //laatste stap zoizo, kan bv ook refreshen zijn in browser, versturen, actie, ...
+            this.getMeal();
             console.log("finally done");
         }); 
     }
 
-    printWeather(json){
-        let summary = json.weather[0].description;
-        console.log(this.temp);
-        document.querySelector("h1").innerHTML = summary;
-        document.querySelector("h2").innerHTML = this.temp + " °C";
 
-        this.getMeal();
-
-
-    }
 
     getMeal(){
         let url = `https://www.themealdb.com/api/json/v${this.API_KEY_MEAL}/${this.API_KEY_MEAL}/categories.php`;
@@ -69,12 +72,32 @@ export default class App{
     }
 
     printMeal(json){
-        console.log(this.temp);
-        if (this.temp < 12){
-            console.log("yoepie")
-        }else{
-            console.log("error");
+        let meal = 0;
+        let mealPic; 
+        if (this.hour <= 10){
+            meal = json.categories[12].strCategory;
+            mealPic = json.categories[12].strCategoryThumb;
+        } else if(10 < this.hour < 16){
+            meal = json.categories[5].strCategory;
+            mealPic = json.categories[5].strCategoryThumb;
+        } else if(16 <= this.hour < 18){
+            meal = json.categories[9].strCategory;
+            mealPic = json.categories[9].strCategoryThumb;
+        } else if(18 <= this.hour < 20){
+            if (this.temp > 19){
+                meal = json.categories[7].strCategory;
+                mealPic = json.categories[7].strCategoryThumb;
+            }else{
+                meal = json.categories[0].strCategory;
+                mealPic = json.categories[0].strCategoryThumb;
+            }
+        } else{
+            meal = json.categories[2].strCategory;
+            mealPic = json.categories[2].strCategoryThumb;
         }
-        
+        console.log(mealPic);
+        document.querySelector("h2").innerHTML = "It is " + this.hour + ":" + this.minute + " and " + this.temp + "°C outside.";
+        document.querySelector("h1").innerHTML = "Perfect time to eat " + meal + "!";
+        document.querySelector(".mealBackground").src=mealPic;
     }
 }
