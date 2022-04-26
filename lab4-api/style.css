@@ -1,8 +1,41 @@
+html{
+  height: 100%;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  background-color:aquamarine;
   margin-top: 60px;
+  height: 280px;
+  width: 360px;
+  align-self: center;
+  background-size: cover;
+  background-repeat: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+h2{
+  padding-top: 5px;
+  align-self:center;
+}
+
+h1{
+  padding-top: 10px;
+  min-width: 350px;
+  min-height: 35px;
+  background-color: rgba(0, 0, 255, 0.6);
+  border-radius: 10px;
+  color: white;
+  align-self: center;
+  font-size: 24px;
+  position: absolute;
+  bottom: 0;
+}
+img{
+  margin-top:-10px;
 }
